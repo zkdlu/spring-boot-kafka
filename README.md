@@ -36,7 +36,7 @@
 
 ## Consumer Group
 - Consumer group은 한개의  Topic을 담당. (하나의 토픽은 여러개의 Consumer group이 접근할 수 있음)
-- 
+- Consumer들을 대표하는 그룹
 
 ### ZooKeeper 컨테이너 설치
 ```yml
