@@ -123,6 +123,24 @@ $ docker-compose up
 ```
 
 ## 간단 테스트 해보기
+토픽생성
+```
+$ kafka-topics.sh --create -bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic "test"
+```
+> bootstrap-server : 연결할 카프카 서버, 이 옵션을 주면 직접 zookeeper에 연결하지 않아도 됨
+> replication-factor : partion 복제 수, 기본 값은 파티션 복제를 사용하지 않음
+> partitions : 토픽이 생성되거나 변경될 때의 파티션 수
+> topic : create, alter, describe, delete 옵션에 사용할 토픽 명
+> > 파티션이 늘릴 수는 있는데 줄일 수는 없으니 늘릴 때 유의
+토픽목록
+```
+$ kafka-topics.sh --list --bootstrap-server localhost:9092
+```
+토픽삭제
+```
+$ kafka-topics.sh --delete --topic "test" --bootstrap-server localhost:9092
+```
+> 토픽을 삭제하기 위해서는 server.properties 파일에서 delete.topic.enalbe=true설정을 추가해줘야 함(서버 재시작 필요)
 producer
 ```
 $ docker exec -it kafka_kafka_1 bash
