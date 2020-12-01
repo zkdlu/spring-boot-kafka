@@ -79,3 +79,45 @@ services:
 ```bash
 $ docker-compose -f kafka-docker-compose.yml up
 ```
+
+### 카프카에 필요한 zookeeper와 함께 구동되어 작동 함
+```
+$ docker network create --driver=bridge --subnet=172.19.0.0/16 my_devnet //네트워크 생성
+$ docker network inspect my_devnet //네트워크 정보 확인
+```
+
+```yml
+version: '3.5'
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+    - '2181:2181'
+    networks:
+      devnet:
+        ipv4_address: 172.19.0.20
+    environment:
+    - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    hostname: kafka
+    image: 'bitnami/kafka:latest'
+    ports:
+    - '9092:9092'
+    networks:
+      devnet:
+        ipv4_address: 172.19.0.21
+    environment:
+    - KAFKA_ADVERTISED_HOST_NAME=kafka
+    - KAFKA_ZOOKEEPER_CONNECT=172.19.0.20:2181
+    - ALLOW_PLAINTEXT_LISTENER=yes
+ 
+networks:
+  devnet:
+    external:
+      name: my_devnet
+```
+
+실행
+```bash
+$ docker-compose up
+```
