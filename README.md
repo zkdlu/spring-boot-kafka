@@ -39,8 +39,8 @@
 - Topic내에 Partition에서 다음에 소비할 offset이 어디인지 공유하면서 메시지를 소비
 - > Consumer group이 없을 경우, 하나의 partition에 2개 이상의 Consumer가 접근한다면 어떤 Consumer가 몇 번 offset을 소비할 지 모름
 
-> - Partition은 하나의 Consumer만 접근이 가능함.
-> - Consumer는 여러개의 Partition을 소비 가능
+  > - Partition은 하나의 Consumer만 접근이 가능함.
+  > - Consumer는 여러개의 Partition을 소비 가능
 
 ### ZooKeeper 컨테이너 설치
 ```yml
