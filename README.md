@@ -121,3 +121,18 @@ networks:
 ```bash
 $ docker-compose up
 ```
+
+## 간단 테스트 해보기
+producer
+```
+$ docker exec -it kafka_kafka_1 bash
+@kafka:/$ kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic
+> test
+```
+consumer
+```
+$ docker exec -it kafka_kafka_1 bash
+@kafka:/$ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
+test
+```
+> --from-beginning : Consumer에게 설정된 offset이 없으므로 가장 최신의 메시지 대신 가장 먼저 도착한 메시지부터 읽도록 하는 옵션
