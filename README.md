@@ -7,15 +7,36 @@
 - 메시지를 메모리에 저장하는 기존 시스템과 달리 카프카는 파일 시스템에 저장 -> 재시작으로 인한 유실 우려 감소
 - 기존의 메시징 시스템은 broker가 consumer에게 메시지를 push해주는 방식 -> Kafka는 Consumer가 Broker로부터 직접 가지고 오는 pull 방식.
 
-### 주요 개념
-- Producer: 메시지 발행자
-- Consumer: 메시지 소비자
-- Broker: 카프카 서버
-- Zookeeper: 카프카 서버(+클러스터 상태를 관리)
-- Cluster: Broker 묶음
-- Partitions: Topic이 나뉘는 단위
-- Log: 1개의 메시지
-- Offset: 파티션 내에서 각 메시지가 가지는 unique id
+## Zookeeper
+- 본래 Zookeeper의 용도는 클러스터 최신 설정정보 관리, 동기화, 리더 채택 등 클러스터의 서버들이 공유하는 데이터를 관리하기 위해 사용
+- Brokder에 분산 처리된 메시지 큐의 정보들을 관리
+- 클러스터를 관리하는 Zookeeper없이는 Kafka 구동이 불가능함.
+
+## Broker
+- Kafka 서버
+- 한 클러스터 내에 Kafka server 여러대 띄울 수 있음
+
+## Partition
+- Topic내에서 메시지가 분산되어 저장되는 단위
+- 한 Topic에 Partition이 3개 있다면, 3개의 Partition에 대해서 메시지가 분산되어 저장 됨.
+- Queue로 저장되므로 Partition의 마지막에 저장되어 Partition내에서는 순서가 보장되나, Partition끼리는 보장되지 않는다.
+
+## Log
+- Partition의 한칸에 해당하는 메시지
+- key, value, timestamp로 구성
+
+## Offset
+- Partition내에서 각 메시지를 식별할 수 있는 unique id
+- 메시지를 소비하는 Consumer가 읽을 차례를 의미하므로 Partition마다 별도로 관리 됨
+
+## Producer
+- 정해진 Topic으로 메시지를 기록
+- Partition이 여러개 있을 경우, 기록 될 Partition의 선택은 기본적으로 Round-Robin 방식
+- Partition내에서 가장 마지막 offset 뒤에 신규 메시지가 저장되므로, Partition내에서느 순서가 보장되지만 실제로는 Consumer의 동작 방식에 의해 **순서가 보장되지 않음**
+
+## Consumer Group
+- Consumer group은 한개의  Topic을 담당. (하나의 토픽은 여러개의 Consumer group이 접근할 수 있음)
+- 
 
 ### ZooKeeper 컨테이너 설치
 ```yml
@@ -159,4 +180,6 @@ test
 
 ### 참고용
 - https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-%EC%B2%98%EC%9D%8C-%EC%A0%91%ED%95%98%EB%8A%94-kafka/
+- https://www.popit.kr/%ec%b9%b4%ed%94%84%ec%b9%b4-%ec%84%a4%ec%b9%98-%ec%8b%9c-%ea%b0%80%ec%9e%a5-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%84%a4%ec%a0%95-4%ea%b0%80%ec%a7%80/
+- https://www.popit.kr/kafka-consumer-group/
 - https://12bme.tistory.com/529
