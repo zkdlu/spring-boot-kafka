@@ -1,5 +1,5 @@
 # spring-boot-kafka
-
+https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-%EC%B2%98%EC%9D%8C-%EC%A0%91%ED%95%98%EB%8A%94-kafka/
 ## Kafka
 - 분산형 스트리밍 플랫폼
 - 메시지 큐
