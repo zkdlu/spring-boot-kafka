@@ -152,7 +152,7 @@ $ docker-compose up
 ```
 $ kafka-topics.sh --create -bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic "test"
 ```
-> - bootstrap-server : 연결할 카프카 서버, 이 옵션을 주면 직접 zookeeper에 연결하지 않아도 됨
+> - bootstrap-server : 브로커 리스트
 > - replication-factor : partion 복제 수, 기본 값은 파티션 복제를 사용하지 않음
 > - partitions : 토픽이 생성되거나 변경될 때의 파티션 수
 > - topic : create, alter, describe, delete 옵션에 사용할 토픽 명
@@ -181,6 +181,9 @@ $ docker exec -it kafka_kafka_1 bash
 test
 ```
 > --from-beginning : Consumer에게 설정된 offset이 없으므로 가장 최신의 메시지 대신 가장 먼저 도착한 메시지부터 읽도록 하는 옵션
+
+### Kafka API Document
+- https://kafka.apache.org/documentation/#gettingStarted
 
 ### 참고용
 - https://www.popit.kr/kafka-%EC%9A%B4%EC%98%81%EC%9E%90%EA%B0%80-%EB%A7%90%ED%95%98%EB%8A%94-%EC%B2%98%EC%9D%8C-%EC%A0%91%ED%95%98%EB%8A%94-kafka/
