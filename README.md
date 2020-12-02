@@ -48,7 +48,7 @@
   > - Consumer는 여러개의 Partition을 소비 가능
   > - 한 Topic의 Partition은 Consumer Group과 1:1 매칭이 이상적이라고 함.
   
-  > - **추가**
+  > **추가**
   > - Consumer-1은 Partition-1에 대해서 소비를 맡아야 했는데, Consumer-1이 Down될 경우 소비할 수 없게 된다. 
   > - 이런 상황을 Rebalance된 상황이라고 함
   > - 리밸런스 된 상황이면, 파티션 재조정을 통해 다른 Consumer가 Partition-1의 소비를 이어서 하게 한다.
