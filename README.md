@@ -46,6 +46,7 @@
 
   > - Partition은 하나의 Consumer만 접근이 가능함.
   > - Consumer는 여러개의 Partition을 소비 가능
+  > - 한 Topic의 Partition은 Consumer Group과 1:1 매칭이 이상적이라고 함.
 
 ### ZooKeeper 컨테이너 설치
 ```yml
