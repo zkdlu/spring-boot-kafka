@@ -34,6 +34,11 @@
 - Partition이 여러개 있을 경우, 기록 될 Partition의 선택은 기본적으로 Round-Robin 방식
 - Partition내에서 가장 마지막 offset 뒤에 신규 메시지가 저장되므로, Partition내에서느 순서가 보장되지만 실제로는 Consumer의 동작 방식에 의해 **순서가 보장되지 않음**
 
+## Consumer
+- 구독한 topic에서 메시지를 소비
+- 해당 topic내의 각 파티션에 존재하는 offset의 위치를 통해 이전에 소비했던 offset위치를 기억하고 관리
+- Consumer가 죽었다가 다시 살아나도 전에 마지막으로 읽었던 위치에서부터 다시 읽어들일 수 있다.
+
 ## Consumer Group
 - Consumer group은 한개의  Topic을 담당. (하나의 토픽은 여러개의 Consumer group이 접근할 수 있음)
 - Topic내에 Partition에서 다음에 소비할 offset이 어디인지 공유하면서 메시지를 소비
