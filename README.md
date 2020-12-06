@@ -180,6 +180,9 @@ $ kafka-topics.sh --delete --topic "test" --bootstrap-server localhost:9092
 ```
 > 토픽을 삭제하기 위해서는 server.properties 파일에서 delete.topic.enalbe=true설정을 추가해줘야 함(서버 재시작 필요)
 
+> 토픽이 자동 생성되는 설정이 있는데 이는 false로 해두는 것이 좋다. (문제 파악 어려움)
+> > auto.create.topics.enable=false
+
 producer
 ```
 $ docker exec -it kafka_kafka_1 bash
