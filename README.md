@@ -53,6 +53,8 @@
   > - 이런 상황을 Rebalance된 상황이라고 함
   > - 리밸런스 된 상황이면, 파티션 재조정을 통해 다른 Consumer가 Partition-1의 소비를 이어서 하게 한다.
   
+## Kafka Stream
+- 본래 메시지에 사용하던걸 스트림으로 사용
 
 ### ZooKeeper 컨테이너 설치
 ```yml
